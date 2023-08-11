@@ -7,11 +7,16 @@ const bottomInput = document.getElementById('input');
 const upperLabel = document.getElementById('calcul');
 
 const digits = document.getElementsByClassName('digit')
-//console.log(digits);
+const operators = document.querySelectorAll('#minus, #times, #divideby, #plus');
+//console.log(operators);
 
 // Fonctions d'évènements
 function addDigit() {
     bottomInput.value += this.innerText;
+}
+
+function addToLabel() {
+    upperLabel.innerText += bottomInput.value + ' '+ this.innerText + '';
 }
 
 // Ajout des évènements
