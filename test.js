@@ -1,1 +1,0 @@
-document.getElementById('calcul').innerHTML = "Leonardo";
