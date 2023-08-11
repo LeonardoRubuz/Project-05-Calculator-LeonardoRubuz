@@ -8,6 +8,7 @@ const upperLabel = document.getElementById('calcul');
 
 const digits = document.getElementsByClassName('digit');
 const operators = document.querySelectorAll('#minus, #times, #divideby, #plus');
+const clearButton = document.getElementById('clear');
 //console.log(operators);
 
 // FONCTIONS D'EVENEMENTS
@@ -42,7 +43,7 @@ function reset() {
 }
 
 function clearInput() {
-    
+    bottomInput.value = "";
 }
 
 // AJOUT DES EVENEMENTS
@@ -57,3 +58,6 @@ for (let i = 0; i < operators.length; i++) {
     element.addEventListener('click', addToLabel)
     
 }
+
+// sur le boutton d'effacement
+clearButton.addEventListener('click',clearInput);
