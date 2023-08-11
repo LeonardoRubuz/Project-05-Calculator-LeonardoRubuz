@@ -19,7 +19,6 @@ for (let i = 0; i < operators.length; i++) {
     const element = operators[i];
     element.type = "button";
     newOperators.push(element);
-    console.log(newOperators);
 }
 //console.log(newOperators[0].type);
 
@@ -48,12 +47,22 @@ function clickZero() {
 
 
 function changeSign() {
-    if (bottomInput.value === "") {
-        bottomInput.value = "" 
-    } else if (bottomInput.value[0] != "-") {
-        bottomInput.value = bottomInput.value.unshift("-");
-    } else{
-        bottomInput.value = bottomInput.value.shift();
+    let valeur = Array.from(bottomInput.value);
+    /*if (valeur.at(0) !== "-") {
+        valeur.unshift("-");
+        //valeur.join(',');
+        bottomInput.value = (valeur.join(''));
+    }*/
+    if (!bottomInput.value) {
+        bottomInput.value;
+    }else if (bottomInput.value && valeur.at(0)!=="-"){
+        valeur.unshift("-");
+        bottomInput.value =(valeur.join(""));
+    }else if (bottomInput.value && valeur.at(0)==="-"){
+        valeur.shift();
+        bottomInput.value=(valeur.join("")) ;
+    }else{
+        bottomInput.value;
     }
 }
 
