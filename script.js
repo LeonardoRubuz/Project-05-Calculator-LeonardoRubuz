@@ -6,7 +6,7 @@
 const bottomInput = document.getElementById('input');
 const upperLabel = document.getElementById('calcul');
 
-const digits = document.getElementsByClassName('digit')
+const digits = document.getElementsByClassName('digit');
 const operators = document.querySelectorAll('#minus, #times, #divideby, #plus');
 //console.log(operators);
 
@@ -16,9 +16,33 @@ function addDigit() {
 }
 
 function addToLabel() {
-    upperLabel.innerText += bottomInput.value + ' '+ this.innerText + ' ';
+    upperLabel.innerText += bottomInput.value +' '+ this.innerText + ' ';
     bottomInput.value = "";
     bottomInput.name = "";
+}
+
+function addDot() {
+    
+}
+
+function clickZero() {
+    
+}
+
+function changeSign() {
+    
+}
+
+function returnPercentage() {
+    
+}
+
+function reset() {
+    
+}
+
+function clearInput() {
+    
 }
 
 // AJOUT DES EVENEMENTS
