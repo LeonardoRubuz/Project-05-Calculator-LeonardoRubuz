@@ -9,6 +9,7 @@ const upperLabel = document.getElementById('calcul');
 const digits = document.getElementsByClassName('digit');
 const operators = document.querySelectorAll('#minus, #times, #divideby, #plus');
 const clearButton = document.getElementById('clear');
+const resetButton = document.getElementById('reset');
 //console.log(operators);
 
 // FONCTIONS D'EVENEMENTS
@@ -39,7 +40,8 @@ function returnPercentage() {
 }
 
 function reset() {
-    
+    upperLabel.innerText = "";
+    bottomInput.value = "";
 }
 
 function clearInput() {
@@ -61,3 +63,5 @@ for (let i = 0; i < operators.length; i++) {
 
 // sur le boutton d'effacement
 clearButton.addEventListener('click',clearInput);
+// sur le boutton de réinitialisation
+resetButton.addEventListener('click', reset); 
