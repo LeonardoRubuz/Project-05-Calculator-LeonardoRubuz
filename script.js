@@ -13,6 +13,16 @@ const resetButton = document.getElementById('reset');
 const changeSignButton = document.getElementById('plusoumoins');
 //console.log(operators);
 
+// Changement de type des boutons d'opération
+let newOperators = [];
+for (let i = 0; i < operators.length; i++) {
+    const element = operators[i];
+    element.type = "button";
+    newOperators.push(element);
+    console.log(newOperators);
+}
+//console.log(newOperators[0].type);
+
 // FONCTIONS D'EVENEMENTS
 function addDigit() {
     bottomInput.value += this.innerText;
