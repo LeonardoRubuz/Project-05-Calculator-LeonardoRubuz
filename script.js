@@ -1,4 +1,4 @@
-//{ calculate } = require('./calculator.js');
+//import { calculate } from './calculator.js';
 
 // TODO: Faire la manipulation du DOM dans ce fichier
 
@@ -29,7 +29,11 @@ function addDot() {
 }
 
 function clickZero() {
-    
+    if (bottomInput.value === "") {
+        bottomInput.value = "";
+    }else{
+        bottomInput.value += this.innerText;
+    }
 }
 
 
@@ -60,6 +64,11 @@ function clearInput() {
 // sur les bouttons des nombres
 for (let index = 0; index < digits.length; index++) {
     const element = digits[index];
+    if (element.innerText === "0") {
+        element.addEventListener('click', clickZero)
+    }else{
+
+    }
     element.addEventListener('click', addDigit)
 }
 //sur les opérateurs
