@@ -10,6 +10,7 @@ const digits = document.getElementsByClassName('digit');
 const operators = document.querySelectorAll('#minus, #times, #divideby, #plus');
 const clearButton = document.getElementById('clear');
 const resetButton = document.getElementById('reset');
+const changeSignButton = document.getElementById('plusoumoins');
 //console.log(operators);
 
 // FONCTIONS D'EVENEMENTS
@@ -31,8 +32,15 @@ function clickZero() {
     
 }
 
+
 function changeSign() {
-    
+    if (bottomInput.value === "") {
+        bottomInput.value = "" 
+    } else if (bottomInput.value[0] != "-") {
+        bottomInput.value = bottomInput.value.unshift("-");
+    } else{
+        bottomInput.value = bottomInput.value.shift();
+    }
 }
 
 function returnPercentage() {
@@ -65,3 +73,5 @@ for (let i = 0; i < operators.length; i++) {
 clearButton.addEventListener('click',clearInput);
 // sur le boutton de réinitialisation
 resetButton.addEventListener('click', reset); 
+// sur le boutton de changement de signe
+changeSignButton.addEventListener('click', changeSign);
