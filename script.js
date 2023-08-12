@@ -10,9 +10,9 @@ const digits = document.getElementsByClassName('digit');
 const operators = document.querySelectorAll('#minus, #times, #divideby, #plus');
 const clearButton = document.getElementById('clear');
 const resetButton = document.getElementById('reset');
-const dotButton = document.getElementsByClassName('dot');
+const dotButton = document.getElementsByClassName('numpad dot');
 const changeSignButton = document.getElementById('plusoumoins');
-//console.log(operators);
+console.log(dotButton);
 
 // Changement de type des boutons d'opération
 let newOperators = [];
@@ -35,12 +35,8 @@ function addToLabel() {
 }
 
 function addDot() {
-    let valeur = Array.from(bottomInput.value);
-    if (!bottomInput.value) {
-        bottomInput.value += "0.";
-    } else if (bottomInput && valeur.indexOf('.') === true){
-        bottomInput.value;
-    }
+    //let valeur = Array.from(bottomInput.value);
+    bottomInput.value += '.';
 }
 
 function clickZero() {
@@ -90,16 +86,16 @@ function clearInput() {
 for (let index = 0; index < digits.length; index++) {
     const element = digits[index];
     if (element.innerText === "0") {
-        element.addEventListener('click', clickZero)
+        element.addEventListener('click', clickZero);
     }else{
-
+        element.addEventListener('click', addDigit)
     }
-    element.addEventListener('click', addDigit)
+    
 }
 //sur les opérateurs
 for (let i = 0; i < operators.length; i++) {
     const element = operators[i];
-    element.addEventListener('click', addToLabel)
+    element.addEventListener('click', addToLabel);
     
 }
 
@@ -110,4 +106,4 @@ resetButton.addEventListener('click', reset);
 // sur le boutton de changement de signe
 changeSignButton.addEventListener('click', changeSign);
 // sur le bouton point
-dotButton.addEventListener('click', addDot)
+dotButton.addEventListener('click', addDot);
