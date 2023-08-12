@@ -29,15 +29,11 @@ function addDigit() {
 }
 
 function addToLabel() {
-    upperLabel.innerText += bottomInput.value +' '+ this.innerText + ' ';
+    upperLabel.innerText += ' ' + bottomInput.value + ' ' + this.innerText;
     bottomInput.value = "";
     bottomInput.name = "";
 }
 
-function addDot() {
-    //let valeur = Array.from(bottomInput.value);
-    bottomInput.value += '.';
-}
 
 function clickZero() {
     if (bottomInput.value === "") {
@@ -106,4 +102,3 @@ resetButton.addEventListener('click', reset);
 // sur le boutton de changement de signe
 changeSignButton.addEventListener('click', changeSign);
 // sur le bouton point
-dotButton.addEventListener('click', addDot);
