@@ -10,6 +10,7 @@ const digits = document.getElementsByClassName('digit');
 const operators = document.querySelectorAll('#minus, #times, #divideby, #plus');
 const clearButton = document.getElementById('clear');
 const resetButton = document.getElementById('reset');
+const dotButton = document.getElementsByClassName('dot');
 const changeSignButton = document.getElementById('plusoumoins');
 //console.log(operators);
 
@@ -34,7 +35,12 @@ function addToLabel() {
 }
 
 function addDot() {
-    
+    let valeur = Array.from(bottomInput.value);
+    if (!bottomInput.value) {
+        bottomInput.value += "0.";
+    } else if (bottomInput && valeur.indexOf('.') === true){
+        bottomInput.value;
+    }
 }
 
 function clickZero() {
@@ -103,3 +109,5 @@ clearButton.addEventListener('click',clearInput);
 resetButton.addEventListener('click', reset); 
 // sur le boutton de changement de signe
 changeSignButton.addEventListener('click', changeSign);
+// sur le bouton point
+dotButton.addEventListener('click', addDot)
