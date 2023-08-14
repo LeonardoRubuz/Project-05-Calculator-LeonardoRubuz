@@ -12,7 +12,10 @@ const clearButton = document.getElementById('clear');
 const resetButton = document.getElementById('reset');
 const dotButton = document.getElementsByClassName('numpad dot');
 const changeSignButton = document.getElementById('plusoumoins');
-console.log(dotButton);
+upperLabel.style.maxWidth = "400px"
+upperLabel.style.maxHeight = "auto"
+upperLabel.style.margin = "auto"
+console.log(upperLabel.style);
 
 // Changement de type des boutons d'opération
 let newOperators = [];
