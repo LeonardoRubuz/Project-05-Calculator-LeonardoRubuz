@@ -26,7 +26,7 @@ for (let i = 0; i < operators.length; i++) {
     element.type = "button";
     newOperators.push(element);
 }
-equalsButton.type = 'button'
+equalsButton.type = 'button';
 //console.log(newOperators[0].type);
 
 // FONCTIONS D'EVENEMENTS
@@ -117,3 +117,4 @@ changeSignButton.addEventListener('click', changeSign);
 // sur le bouton point
 
 //sur le bouton d'égalité
+equalsButton.addEventListener('click', makeCalculation)
