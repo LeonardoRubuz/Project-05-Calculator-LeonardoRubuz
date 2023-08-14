@@ -84,10 +84,30 @@ function clearInput() {
 }
 
 function makeCalculation(){
+    let inputValue = parseFloat(bottomInput.value)
     for (let index = 0; index < operators.length; index++) {
         const element = operators[index].id;
-        console.log(element);
+        switch (element) {
+            case 'plus':
+                result += inputValue;
+                break;
+            case 'minus':
+                result -= inputValue;
+                break;
+            case 'divideby':
+                result /= inputValue;
+                break;
+            case 'times':
+                result *= inputValue;
+                break;
+            default:
+                break;
+        }
     }
+}
+
+function showResults(){
+
 }
 
 // AJOUT DES EVENEMENTS
@@ -117,4 +137,4 @@ changeSignButton.addEventListener('click', changeSign);
 // sur le bouton point
 
 //sur le bouton d'égalité
-equalsButton.addEventListener('click', makeCalculation)
+equalsButton.addEventListener('click', showResults );
