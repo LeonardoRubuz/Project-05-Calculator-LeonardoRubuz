@@ -13,9 +13,11 @@ const resetButton = document.getElementById('reset');
 const dotButton = document.getElementsByClassName('numpad dot');
 const changeSignButton = document.getElementById('plusoumoins');
 upperLabel.style.maxWidth = "400px"
-upperLabel.style.maxHeight = "auto"
 upperLabel.style.margin = "auto"
 console.log(upperLabel.style);
+
+// La variable qui contiendra le resultat du calcul
+let result;
 
 // Changement de type des boutons d'opération
 let newOperators = [];
