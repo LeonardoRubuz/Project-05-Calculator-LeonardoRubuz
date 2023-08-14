@@ -12,20 +12,21 @@ const clearButton = document.getElementById('clear');
 const resetButton = document.getElementById('reset');
 const dotButton = document.getElementsByClassName('numpad dot');
 const changeSignButton = document.getElementById('plusoumoins');
-upperLabel.style.maxWidth = "400px"
-upperLabel.style.margin = "auto"
-console.log(upperLabel.style);
-
+const equalsButton = document.getElementById('equals');
+upperLabel.style.maxWidth = "400px";
+upperLabel.style.margin = "auto";
+console.log(operators);
 // La variable qui contiendra le resultat du calcul
 let result;
 
-// Changement de type des boutons d'opération
+// Changement de type des boutons d'opération et sur le bouton d'égalité
 let newOperators = [];
 for (let i = 0; i < operators.length; i++) {
     const element = operators[i];
     element.type = "button";
     newOperators.push(element);
 }
+equalsButton.type = 'button'
 //console.log(newOperators[0].type);
 
 // FONCTIONS D'EVENEMENTS
@@ -82,6 +83,13 @@ function clearInput() {
     bottomInput.value = "";
 }
 
+function makeCalculation(){
+    for (let index = 0; index < operators.length; index++) {
+        const element = operators[index].id;
+        console.log(element);
+    }
+}
+
 // AJOUT DES EVENEMENTS
 // sur les bouttons des nombres
 for (let index = 0; index < digits.length; index++) {
@@ -107,3 +115,5 @@ resetButton.addEventListener('click', reset);
 // sur le boutton de changement de signe
 changeSignButton.addEventListener('click', changeSign);
 // sur le bouton point
+
+//sur le bouton d'égalité
