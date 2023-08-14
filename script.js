@@ -125,6 +125,7 @@ for (let index = 0; index < digits.length; index++) {
 for (let i = 0; i < operators.length; i++) {
     const element = operators[i];
     element.addEventListener('click', addToLabel);
+    element.addEventListener('click', makeCalculation)
     
 }
 
