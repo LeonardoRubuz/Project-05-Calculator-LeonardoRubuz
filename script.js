@@ -3,6 +3,7 @@
 // TODO: Faire la manipulation du DOM dans ce fichier
 
 // SELECTION DES ELEMENTS 
+const doc = document;
 const bottomInput = document.getElementById('input');
 const upperLabel = document.getElementById('calcul');
 
@@ -15,7 +16,7 @@ const changeSignButton = document.getElementById('plusoumoins');
 const equalsButton = document.getElementById('equals');
 upperLabel.style.maxWidth = "400px";
 upperLabel.style.margin = "auto";
-console.log(operators);
+
 // La variable qui contiendra le resultat du calcul
 let result;
 
@@ -124,6 +125,10 @@ function makeCalculation(){
 
 function showResults(){
 
+}
+
+function disableOtherKeyboards() {
+    
 }
 
 // AJOUT DES EVENEMENTS
