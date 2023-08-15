@@ -49,9 +49,15 @@ function addDigit() {
 }
 
 function addToLabel() {
-    upperLabel.innerText += ' ' + bottomInput.value + ' ' + this.innerText;
-    bottomInput.value = "";
-    bottomInput.name = "";
+    let newValue = Array.from(bottomInput.value);
+    if (bottomInput.value.includes('.') && newValue.at(0) ==='.') {
+        newValue.unshift('0');
+        upperLabel.innerText +=  ' ' + newValue.join('') + ' ' + this.innerText;
+        bottomInput.value = "";
+    }else{
+        upperLabel.innerText += ' ' + bottomInput.value + ' ' + this.innerText;
+        bottomInput.value = "";
+    }
 }
 
 function addDot() {
