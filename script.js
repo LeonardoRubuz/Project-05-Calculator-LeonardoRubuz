@@ -11,7 +11,7 @@ const digits = document.getElementsByClassName('digit');
 const operators = document.querySelectorAll('#minus, #times, #divideby, #plus');
 const clearButton = document.getElementById('clear');
 const resetButton = document.getElementById('reset');
-const dotButton = document.getElementsByClassName('numpad dot');
+const dotButton = document.querySelector(".dot");
 const changeSignButton = document.getElementById('plusoumoins');
 const equalsButton = document.getElementById('equals');
 upperLabel.style.maxWidth = "400px";
@@ -54,6 +54,13 @@ function addToLabel() {
     bottomInput.name = "";
 }
 
+function addDot() {
+    if (bottomInput.value==="") {
+        bottomInput.value += this.innerText;
+    }else if (bottomInput.value.includes('.')){
+        bottomInput.value;
+    }
+}
 
 function clickZero() {
     if (bottomInput.value === "") {
@@ -157,7 +164,7 @@ resetButton.addEventListener('click', reset);
 // sur le bouton de changement de signe
 changeSignButton.addEventListener('click', changeSign);
 // sur le bouton point
-
+dotButton.addEventListener('click', addDot);
 //sur le bouton d'égalité
 equalsButton.addEventListener('click', showResults );
 
