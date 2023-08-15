@@ -127,8 +127,13 @@ function showResults(){
 
 }
 
-function disableOtherKeyboards() {
-    
+function disableOtherKeyboards(event) {
+    for (let index of numpadDigits) {
+        if (event.keyCode !== index) {
+            // on empêche l'action par défaut
+            event.preventDefault();
+        }
+    }
 }
 
 // AJOUT DES EVENEMENTS
