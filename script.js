@@ -2,7 +2,7 @@
 
 // TODO: Faire la manipulation du DOM dans ce fichier
 
-// SELECTION DES ELEMENTS
+// SELECTION DES ELEMENTS 
 const bottomInput = document.getElementById('input');
 const upperLabel = document.getElementById('calcul');
 
@@ -28,6 +28,14 @@ for (let i = 0; i < operators.length; i++) {
 }
 equalsButton.type = 'button';
 //console.log(newOperators[0].type);
+
+// Sélection des codes clavier des touches du pavé numérique uniquement
+let numpadDigits = [];
+for (let index = 96; index < 123; index++) {
+    numpadDigits.push(index);
+    
+}
+
 
 // FONCTIONS D'EVENEMENTS
 function addDigit() {
@@ -147,3 +155,4 @@ changeSignButton.addEventListener('click', changeSign);
 
 //sur le bouton d'égalité
 equalsButton.addEventListener('click', showResults );
+
