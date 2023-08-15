@@ -32,11 +32,11 @@ equalsButton.type = 'button';
 
 // Sélection des codes clavier des touches du pavé numérique uniquement
 let numpadDigits = [];
-for (let index = 96; index < 123; index++) {
+for (let index = 96; index < 112; index++) {
     numpadDigits.push(index);
     
 }
-
+console.log(numpadDigits);
 
 // FONCTIONS D'EVENEMENTS
 function addDigit() {
@@ -127,16 +127,11 @@ function showResults(){
 
 }
 
-function disableOtherKeyboards(event) {
-    for (let index of numpadDigits) {
-        if (event.keyCode !== index) {
-            // on empêche l'action par défaut
-            event.preventDefault();
-        }
-    }
-}
+
 
 // AJOUT DES EVENEMENTS
+//sur le document
+doc;
 // sur les boutons des nombres
 for (let index = 0; index < digits.length; index++) {
     const element = digits[index];
