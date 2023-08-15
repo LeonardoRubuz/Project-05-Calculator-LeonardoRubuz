@@ -119,7 +119,7 @@ function showResults(){
 }
 
 // AJOUT DES EVENEMENTS
-// sur les bouttons des nombres
+// sur les boutons des nombres
 for (let index = 0; index < digits.length; index++) {
     const element = digits[index];
     if (element.innerText === "0") {
@@ -137,11 +137,11 @@ for (let i = 0; i < operators.length; i++) {
     
 }
 
-// sur le boutton d'effacement
+// sur le bouton d'effacement
 clearButton.addEventListener('click',clearInput);
-// sur le boutton de réinitialisation
+// sur le bouton de réinitialisation
 resetButton.addEventListener('click', reset); 
-// sur le boutton de changement de signe
+// sur le bouton de changement de signe
 changeSignButton.addEventListener('click', changeSign);
 // sur le bouton point
 
