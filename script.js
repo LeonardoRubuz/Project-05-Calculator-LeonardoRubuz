@@ -31,7 +31,13 @@ equalsButton.type = 'button';
 
 // FONCTIONS D'EVENEMENTS
 function addDigit() {
-    bottomInput.value += this.innerText;
+    if (bottomInput.value.length < 10) {
+        bottomInput.value += this.innerText;
+        console.log(bottomInput.value.length);    
+    }else{
+        bottomInput.value   
+    }
+    
 }
 
 function addToLabel() {
