@@ -32,8 +32,7 @@ equalsButton.type = 'button';
 // FONCTIONS D'EVENEMENTS
 function addDigit() {
     if (bottomInput.value.length < 10) {
-        bottomInput.value += this.innerText;
-        console.log(bottomInput.value.length);    
+        bottomInput.value += this.innerText;    
     }else{
         bottomInput.value   
     }
@@ -51,7 +50,10 @@ function clickZero() {
     if (bottomInput.value === "") {
         bottomInput.value = "";
     }else{
-        bottomInput.value += this.innerText;
+        if (bottomInput.value.length < 10) {
+            bottomInput.value += this.innerText;    
+        }
+        
     }
 }
 
