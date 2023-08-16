@@ -17,8 +17,6 @@ const equalsButton = document.getElementById('equals');
 upperLabel.style.maxWidth = "400px";
 upperLabel.style.margin = "auto";
 
-// La variable qui contiendra le resultat du calcul
-let result;
 
 // Changement de type des boutons d'opération et sur le bouton d'égalité
 let newOperators = [];
@@ -119,24 +117,37 @@ function clearInput() {
 }
 
 function makeCalculation(){
-    let inputValue = parseFloat(bottomInput.value)
+    let inputValue = parseFloat(bottomInput.value);
+    let result = 0;
     for (let index = 0; index < operators.length; index++) {
         const element = operators[index].id;
-        switch (element) {
-            case 'plus':
+        if (element === 'plus') {
+            if (result === 0) {
+                result = inputValue;
+            }else{
                 result += inputValue;
-                break;
-            case 'minus':
+            }
+        }else if (element === 'minus'){
+            if (result === 0) {
+                result = inputValue;
+            }else{
                 result -= inputValue;
-                break;
-            case 'divideby':
-                result /= inputValue;
-                break;
-            case 'times':
+            }
+
+        }else if(element === 'times'){
+            if (result === 0) {
+                result = inputValue;
+            }else{
                 result *= inputValue;
-                break;
-            default:
-                break;
+            }
+
+        }else{
+            if (result === 0) {
+                result = inputValue;
+            }else{
+                result /= inputValue;
+            }
+
         }
     }
 }
