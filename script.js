@@ -72,7 +72,10 @@ function addDot() {
 
 function clickZero() {
     if (bottomInput.value === "") {
-        bottomInput.value = "";
+        bottomInput.value = "0";
+    }else if (bottomInput.value ==="0"){
+        bottomInput.value;
+
     }else{
         if (bottomInput.value.length < 10) {
             bottomInput.value += this.innerText;    
