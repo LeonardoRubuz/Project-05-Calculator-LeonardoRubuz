@@ -65,7 +65,7 @@ function makeCalculation(){
         operationInput = operationInput.join('*');
         if (operationInput.at(-1) === '*') {
             operationInput = operationInput.substring(0, operationInput.length -1)
-            console.log(eval(operationInput));
+            bottomInput.value = eval(operationInput);
         }else{
             eval(operationInput);
         }
@@ -74,16 +74,16 @@ function makeCalculation(){
         operationInput = operationInput.join('/');
         if (operationInput.at(-1) === '/') {
             operationInput = operationInput.substring(0, operationInput.length -1)
-            console.log(eval(operationInput));
+            bottomInput.value = eval(operationInput);
         }else{
-            eval(operationInput);
+            bottomInput.value = eval(operationInput);
         }
     }else if (upperLabel.innerText.includes('+') || upperLabel.innerText.includes('-')){
         operationInput = upperLabel.innerText;
         if (operationInput.at(-1) === "+" || operationInput.at(-1) === "-") {
             operationInput = operationInput.substring(0, operationInput.length -1);
         }
-        console.log(eval(operationInput));;
+        bottomInput.value = eval(operationInput);
     }
 }
 

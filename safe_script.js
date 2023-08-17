@@ -65,8 +65,26 @@ function makeCalculation(){
         operationInput = operationInput.join('*');
         if (operationInput.at(-1) === '*') {
             operationInput = operationInput.substring(0, operationInput.length -1)
-            console.log(eval(operationInput));
+            upperLabel.innerText = operationInput + '=';
+            bottomInput.value = eval(operationInput);
+        }else{
+            eval(operationInput);
         }
+    }else if (upperLabel.innerText.includes('÷')){
+        operationInput = upperLabel.innerText.split('÷');
+        operationInput = operationInput.join('/');
+        if (operationInput.at(-1) === '/') {
+            operationInput = operationInput.substring(0, operationInput.length -1)
+            bottomInput.value = eval(operationInput);
+        }else{
+            bottomInput.value = eval(operationInput);
+        }
+    }else if (upperLabel.innerText.includes('+') || upperLabel.innerText.includes('-')){
+        operationInput = upperLabel.innerText;
+        if (operationInput.at(-1) === "+" || operationInput.at(-1) === "-") {
+            operationInput = operationInput.substring(0, operationInput.length -1);
+        }
+        bottomInput.value = eval(operationInput);
     }
 }
 
