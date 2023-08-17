@@ -60,30 +60,49 @@ function addToLabel() {
 }
 
 function makeCalculation(){
-    if (upperLabel.innerText.includes('×')) {
-        operationInput = upperLabel.innerText.split('×');
-        operationInput = operationInput.join('*');
-        if (operationInput.at(-1) === '*') {
-            operationInput = operationInput.substring(0, operationInput.length -1)
+    if (bottomInput.value === "") {
+        if (upperLabel.innerText.includes('×')) {
+            operationInput = upperLabel.innerText.split('×');
+            operationInput = operationInput.join('*');
+            if (operationInput.at(-1) === '*') {
+                operationInput = operationInput.substring(0, operationInput.length -1)
+                bottomInput.value = eval(operationInput);
+            }else{
+                eval(operationInput);
+            }
+        }else if (upperLabel.innerText.includes('÷')){
+            operationInput = upperLabel.innerText.split('÷');
+            operationInput = operationInput.join('/');
+            if (operationInput.at(-1) === '/') {
+                operationInput = operationInput.substring(0, operationInput.length -1)
+                bottomInput.value = eval(operationInput);
+            }else{
+                bottomInput.value = eval(operationInput);
+            }
+        }else if (upperLabel.innerText.includes('+') || upperLabel.innerText.includes('-')){
+            operationInput = upperLabel.innerText;
+            if (operationInput.at(-1) === "+" || operationInput.at(-1) === "-") {
+                operationInput = operationInput.substring(0, operationInput.length -1);
+            }
             bottomInput.value = eval(operationInput);
-        }else{
-            eval(operationInput);
-        }
-    }else if (upperLabel.innerText.includes('÷')){
-        operationInput = upperLabel.innerText.split('÷');
-        operationInput = operationInput.join('/');
-        if (operationInput.at(-1) === '/') {
-            operationInput = operationInput.substring(0, operationInput.length -1)
+        } 
+    }else{
+        upperLabel.innerText += ' ' + bottomInput.value;
+        if (upperLabel.innerText.includes('×')) {
+            operationInput = upperLabel.innerText.split('×');
+            operationInput = operationInput.join('*');
             bottomInput.value = eval(operationInput);
-        }else{
+            upperLabel.innerText +=  ' =';
+        }else if (upperLabel.innerText.includes('÷')){
+            operationInput = upperLabel.innerText.split('÷');
+            operationInput = operationInput.join('/');
             bottomInput.value = eval(operationInput);
+            upperLabel.innerText +=  ' =';
+        }else if (upperLabel.innerText.includes('+') || upperLabel.innerText.includes('-')){
+            operationInput = upperLabel.innerText;
+            bottomInput.value = eval(operationInput);
+            upperLabel.innerText += ' =' 
         }
-    }else if (upperLabel.innerText.includes('+') || upperLabel.innerText.includes('-')){
-        operationInput = upperLabel.innerText;
-        if (operationInput.at(-1) === "+" || operationInput.at(-1) === "-") {
-            operationInput = operationInput.substring(0, operationInput.length -1);
-        }
-        bottomInput.value = eval(operationInput);
     }
 }
 
@@ -144,46 +163,6 @@ function reset() {
 function clearInput() {
     bottomInput.value = "";
 }
-
-/*function makeCalculation(){
-    let inputValue = Number(bottomInput.value);
-    let result = 0;
-    for (let index = 0; index < operators.length; index++) {
-        const element = operators[index].id;
-        if (element === 'plus') {
-            if (result === 0) {
-                result = inputValue;
-                bottomInput.value = result;
-            }else{
-                result += inputValue;
-                bottomInput.value = result;
-            }
-            console.log(result);
-        }else if (element === 'minus'){
-            if (result === 0) {
-                result = inputValue;
-            }else{
-                result -= inputValue;
-            }
-
-        }else if(element === 'times'){
-            if (result === 0) {
-                result = inputValue;
-            }else{
-                result *= inputValue;
-            }
-
-        }else{
-            if (result === 0) {
-                result = inputValue;
-            }else{
-                result /= inputValue;
-            }
-
-        }
-    }
-}*/
-
 
 
 function showResults(){
