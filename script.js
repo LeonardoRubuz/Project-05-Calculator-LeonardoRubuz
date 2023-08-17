@@ -37,6 +37,7 @@ let numpadDigits = [];
 for (let index = 96; index < 112; index++) {
     numpadDigits.push(index);
 }
+numpadDigits.push(8);
 
 // FONCTIONS D'EVENEMENTS
 function addDigit() {
