@@ -14,6 +14,8 @@ const dotButton = document.querySelector(".dot");
 const changeSignButton = document.getElementById('plusoumoins');
 const equalsButton = document.getElementById('equals');
 const percentageButton = document.getElementById('percentage')
+
+
 upperLabel.style.maxWidth = "400px";
 upperLabel.style.margin = "auto";
 
@@ -32,9 +34,8 @@ percentageButton.type = 'button';
 
 // Sélection des codes clavier des touches du pavé numérique uniquement
 let numpadDigits = [];
-for (let index = 0; index < 9; index++) {
+for (let index = 96; index < 112; index++) {
     numpadDigits.push(index);
-    
 }
 
 // FONCTIONS D'EVENEMENTS
@@ -238,9 +239,11 @@ function clearInput() {
     bottomInput.value = "";
 }
 
-function showKey(event) {
+function blockKey(event) {
     let keyCode = event.keyCode;
-    console.log(keyCode);
+    if (!numpadDigits.includes(keyCode)) {
+        event.preventDefault();
+    }
 }
 
 // AJOUT DES EVENEMENTS
@@ -261,7 +264,8 @@ for (let i = 0; i < operators.length; i++) {
     element.addEventListener('click', addToLabel);
     
 }
-
+// sur l'input
+bottomInput.addEventListener('keydown', blockKey)
 // sur le bouton d'effacement
 clearButton.addEventListener('click',clearInput);
 // sur le bouton de réinitialisation
