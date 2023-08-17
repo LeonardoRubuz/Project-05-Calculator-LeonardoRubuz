@@ -2,8 +2,7 @@
 
 // TODO: Faire la manipulation du DOM dans ce fichier
 
-// SELECTION DES ELEMENTS 
-const doc = document;
+// SELECTION DES ELEMENTS
 const bottomInput = document.getElementById('input');
 const upperLabel = document.getElementById('calcul');
 
@@ -239,11 +238,13 @@ function clearInput() {
     bottomInput.value = "";
 }
 
-
+function showKey(event) {
+    let keyCode = event.keyCode;
+    console.log(keyCode);
+}
 
 // AJOUT DES EVENEMENTS
-//sur le document
-doc;
+
 // sur les boutons des nombres
 for (let index = 0; index < digits.length; index++) {
     const element = digits[index];
