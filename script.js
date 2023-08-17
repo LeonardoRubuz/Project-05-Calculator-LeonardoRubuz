@@ -78,6 +78,12 @@ function makeCalculation(){
         }else{
             eval(operationInput);
         }
+    }else if (upperLabel.innerText.includes('+') || upperLabel.innerText.includes('-')){
+        operationInput = upperLabel.innerText;
+        if (operationInput.at(-1) === "+" || operationInput.at(-1) === "-") {
+            operationInput = operationInput.substring(0, operationInput.length -1);
+        }
+        console.log(eval(operationInput));;
     }
 }
 
