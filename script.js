@@ -48,12 +48,14 @@ function addDigit() {
         }else{
             bottomInput.value   
         }
+        operationState = false;
     }else{
         if (bottomInput.value.length < 10) {
             bottomInput.value += this.innerText;    
         }else{
             bottomInput.value   
         }
+        operationState = false;
     }
     
 }
@@ -172,9 +174,11 @@ function makePercentage() {
             operationInput = upperLabel.innerText;
             bottomInput.value = eval(operationInput) / 100;
             upperLabel.innerText += '÷ 100 = ' 
+        }else{
+            bottomInput.value = eval(bottomInput.value+ "/100");
         }
     }
-
+    operationState = true;
     
 }
 
@@ -201,7 +205,6 @@ function clickZero() {
         
     }
 }
-
 
 function changeSign() {
     let valeur = Array.from(bottomInput.value);

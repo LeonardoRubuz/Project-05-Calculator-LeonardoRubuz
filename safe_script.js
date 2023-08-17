@@ -19,6 +19,7 @@ upperLabel.style.maxWidth = "400px";
 upperLabel.style.margin = "auto";
 
 let operationInput ="";
+let operationState = false;
 // Changement de type des boutons d'opération et sur le bouton d'égalité
 let newOperators = [];
 for (let i = 0; i < operators.length; i++) {
@@ -39,10 +40,22 @@ for (let index = 0; index < 9; index++) {
 
 // FONCTIONS D'EVENEMENTS
 function addDigit() {
-    if (bottomInput.value.length < 10) {
-        bottomInput.value += this.innerText;    
+    if (operationState) {
+        upperLabel.innerText = "";
+        bottomInput.value = "";
+        if (bottomInput.value.length < 10) {
+            bottomInput.value += this.innerText;    
+        }else{
+            bottomInput.value   
+        }
+        operationState = false;
     }else{
-        bottomInput.value   
+        if (bottomInput.value.length < 10) {
+            bottomInput.value += this.innerText;    
+        }else{
+            bottomInput.value   
+        }
+        operationState = false;
     }
     
 }
@@ -60,32 +73,113 @@ function addToLabel() {
 }
 
 function makeCalculation(){
-    if (upperLabel.innerText.includes('×')) {
-        operationInput = upperLabel.innerText.split('×');
-        operationInput = operationInput.join('*');
-        if (operationInput.at(-1) === '*') {
-            operationInput = operationInput.substring(0, operationInput.length -1)
-            upperLabel.innerText = operationInput + '=';
+    if (bottomInput.value === "") {
+        if (upperLabel.innerText.includes('×')) {
+            operationInput = upperLabel.innerText.split('×');
+            operationInput = operationInput.join('*');
+            if (operationInput.at(-1) === '*') {
+                operationInput = operationInput.substring(0, operationInput.length -1)
+                bottomInput.value = eval(operationInput);
+                operationState = true;
+            }else{
+                eval(operationInput);
+                operationState = true;
+
+            }
+        }else if (upperLabel.innerText.includes('÷')){
+            operationInput = upperLabel.innerText.split('÷');
+            operationInput = operationInput.join('/');
+            if (operationInput.at(-1) === '/') {
+                operationInput = operationInput.substring(0, operationInput.length -1)
+                bottomInput.value = eval(operationInput);
+                operationState = true; 
+
+            }else{
+                bottomInput.value = eval(operationInput);
+                operationState = true; 
+        
+            }
+        }else if (upperLabel.innerText.includes('+') || upperLabel.innerText.includes('-')){
+            operationInput = upperLabel.innerText;
+            if (operationInput.at(-1) === "+" || operationInput.at(-1) === "-") {
+                operationInput = operationInput.substring(0, operationInput.length -1);
+            }
             bottomInput.value = eval(operationInput);
-        }else{
-            eval(operationInput);
-        }
-    }else if (upperLabel.innerText.includes('÷')){
-        operationInput = upperLabel.innerText.split('÷');
-        operationInput = operationInput.join('/');
-        if (operationInput.at(-1) === '/') {
-            operationInput = operationInput.substring(0, operationInput.length -1)
+            operationState = true; 
+
+        } 
+    }else{
+        upperLabel.innerText += ' ' + bottomInput.value;
+        if (upperLabel.innerText.includes('×')) {
+            operationInput = upperLabel.innerText.split('×');
+            operationInput = operationInput.join('*');
             bottomInput.value = eval(operationInput);
-        }else{
+            upperLabel.innerText +=  ' =';
+        }else if (upperLabel.innerText.includes('÷')){
+            operationInput = upperLabel.innerText.split('÷');
+            operationInput = operationInput.join('/');
             bottomInput.value = eval(operationInput);
+            upperLabel.innerText +=  ' =';
+            operationState = true;
+        }else if (upperLabel.innerText.includes('+') || upperLabel.innerText.includes('-')){
+            operationInput = upperLabel.innerText;
+            bottomInput.value = eval(operationInput);
+            upperLabel.innerText += ' =';
+            operationState = true; 
         }
-    }else if (upperLabel.innerText.includes('+') || upperLabel.innerText.includes('-')){
-        operationInput = upperLabel.innerText;
-        if (operationInput.at(-1) === "+" || operationInput.at(-1) === "-") {
-            operationInput = operationInput.substring(0, operationInput.length -1);
-        }
-        bottomInput.value = eval(operationInput);
     }
+    operationState = true;
+}
+
+function makePercentage() {
+    if (bottomInput.value === "") {
+        if (upperLabel.innerText.includes('×')) {
+            operationInput = upperLabel.innerText.split('×');
+            operationInput = operationInput.join('*');
+            if (operationInput.at(-1) === '*') {
+                operationInput = operationInput.substring(0, operationInput.length -1)
+                bottomInput.value = eval(operationInput) / 100;
+            }else{
+                eval(operationInput);
+            }
+        }else if (upperLabel.innerText.includes('÷')){
+            operationInput = upperLabel.innerText.split('÷');
+            operationInput = operationInput.join('/');
+            if (operationInput.at(-1) === '/') {
+                operationInput = operationInput.substring(0, operationInput.length -1)
+                bottomInput.value = eval(operationInput) / 100;
+            }else{
+                bottomInput.value = eval(operationInput) / 100;
+            }
+        }else if (upperLabel.innerText.includes('+') || upperLabel.innerText.includes('-')){
+            operationInput = upperLabel.innerText;
+            if (operationInput.at(-1) === "+" || operationInput.at(-1) === "-") {
+                operationInput = operationInput.substring(0, operationInput.length -1);
+            }
+            bottomInput.value = eval(operationInput) / 100;
+        } 
+    }else{
+        upperLabel.innerText += ' ' + bottomInput.value;
+        if (upperLabel.innerText.includes('×')) {
+            operationInput = upperLabel.innerText.split('×');
+            operationInput = operationInput.join('*');
+            bottomInput.value = eval(operationInput) / 100;
+            upperLabel.innerText +=  '÷ 100 = ';
+        }else if (upperLabel.innerText.includes('÷')){
+            operationInput = upperLabel.innerText.split('÷');
+            operationInput = operationInput.join('/');
+            bottomInput.value = eval(operationInput) / 100;
+            upperLabel.innerText +=  '÷ 100 = ';
+        }else if (upperLabel.innerText.includes('+') || upperLabel.innerText.includes('-')){
+            operationInput = upperLabel.innerText;
+            bottomInput.value = eval(operationInput) / 100;
+            upperLabel.innerText += '÷ 100 = ' 
+        }else{
+            bottomInput.value = eval(bottomInput.value+ "/100");
+        }
+    }
+    operationState = true;
+    
 }
 
 function addDot() {
@@ -111,7 +205,6 @@ function clickZero() {
         
     }
 }
-
 
 function changeSign() {
     let valeur = Array.from(bottomInput.value);
@@ -146,51 +239,6 @@ function clearInput() {
     bottomInput.value = "";
 }
 
-/*function makeCalculation(){
-    let inputValue = Number(bottomInput.value);
-    let result = 0;
-    for (let index = 0; index < operators.length; index++) {
-        const element = operators[index].id;
-        if (element === 'plus') {
-            if (result === 0) {
-                result = inputValue;
-                bottomInput.value = result;
-            }else{
-                result += inputValue;
-                bottomInput.value = result;
-            }
-            console.log(result);
-        }else if (element === 'minus'){
-            if (result === 0) {
-                result = inputValue;
-            }else{
-                result -= inputValue;
-            }
-
-        }else if(element === 'times'){
-            if (result === 0) {
-                result = inputValue;
-            }else{
-                result *= inputValue;
-            }
-
-        }else{
-            if (result === 0) {
-                result = inputValue;
-            }else{
-                result /= inputValue;
-            }
-
-        }
-    }
-}*/
-
-
-
-function showResults(){
-
-}
-
 
 
 // AJOUT DES EVENEMENTS
@@ -223,4 +271,5 @@ changeSignButton.addEventListener('click', changeSign);
 dotButton.addEventListener('click', addDot);
 //sur le bouton d'égalité
 equalsButton.addEventListener('click', makeCalculation);
-//percentageButton.addEventListener()
+// sur le bouton de pourcentage
+percentageButton.addEventListener('click', makePercentage)
