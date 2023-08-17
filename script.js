@@ -14,10 +14,11 @@ const resetButton = document.getElementById('reset');
 const dotButton = document.querySelector(".dot");
 const changeSignButton = document.getElementById('plusoumoins');
 const equalsButton = document.getElementById('equals');
+const percentageButton = document.getElementById('percentage')
 upperLabel.style.maxWidth = "400px";
 upperLabel.style.margin = "auto";
 
-
+let operationInput ="";
 // Changement de type des boutons d'opération et sur le bouton d'égalité
 let newOperators = [];
 for (let i = 0; i < operators.length; i++) {
@@ -27,6 +28,7 @@ for (let i = 0; i < operators.length; i++) {
 }
 equalsButton.type = 'button';
 //console.log(newOperators[0].type);
+percentageButton.type = 'button';
 
 // Sélection des codes clavier des touches du pavé numérique uniquement
 let numpadDigits = [];
@@ -34,7 +36,6 @@ for (let index = 0; index < 9; index++) {
     numpadDigits.push(index);
     
 }
-console.log(numpadDigits);
 
 // FONCTIONS D'EVENEMENTS
 function addDigit() {
@@ -55,6 +56,28 @@ function addToLabel() {
     }else{
         upperLabel.innerText += ' ' + bottomInput.value + ' ' + this.innerText;
         bottomInput.value = "";
+    }
+}
+
+function makeCalculation(){
+    if (upperLabel.innerText.includes('×')) {
+        operationInput = upperLabel.innerText.split('×');
+        operationInput = operationInput.join('*');
+        if (operationInput.at(-1) === '*') {
+            operationInput = operationInput.substring(0, operationInput.length -1)
+            console.log(eval(operationInput));
+        }else{
+            eval(operationInput);
+        }
+    }else if (upperLabel.innerText.includes('÷')){
+        operationInput = upperLabel.innerText.split('÷');
+        operationInput = operationInput.join('/');
+        if (operationInput.at(-1) === '/') {
+            operationInput = operationInput.substring(0, operationInput.length -1)
+            console.log(eval(operationInput));
+        }else{
+            eval(operationInput);
+        }
     }
 }
 
@@ -116,17 +139,20 @@ function clearInput() {
     bottomInput.value = "";
 }
 
-function makeCalculation(){
-    let inputValue = parseFloat(bottomInput.value);
+/*function makeCalculation(){
+    let inputValue = Number(bottomInput.value);
     let result = 0;
     for (let index = 0; index < operators.length; index++) {
         const element = operators[index].id;
         if (element === 'plus') {
             if (result === 0) {
                 result = inputValue;
+                bottomInput.value = result;
             }else{
                 result += inputValue;
+                bottomInput.value = result;
             }
+            console.log(result);
         }else if (element === 'minus'){
             if (result === 0) {
                 result = inputValue;
@@ -150,7 +176,9 @@ function makeCalculation(){
 
         }
     }
-}
+}*/
+
+
 
 function showResults(){
 
@@ -175,7 +203,6 @@ for (let index = 0; index < digits.length; index++) {
 for (let i = 0; i < operators.length; i++) {
     const element = operators[i];
     element.addEventListener('click', addToLabel);
-    element.addEventListener('click', makeCalculation)
     
 }
 
@@ -188,5 +215,5 @@ changeSignButton.addEventListener('click', changeSign);
 // sur le bouton point
 dotButton.addEventListener('click', addDot);
 //sur le bouton d'égalité
-equalsButton.addEventListener('click', showResults );
-
+equalsButton.addEventListener('click', makeCalculation);
+//percentageButton.addEventListener()

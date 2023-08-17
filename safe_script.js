@@ -14,12 +14,11 @@ const resetButton = document.getElementById('reset');
 const dotButton = document.querySelector(".dot");
 const changeSignButton = document.getElementById('plusoumoins');
 const equalsButton = document.getElementById('equals');
+const percentageButton = document.getElementById('percentage')
 upperLabel.style.maxWidth = "400px";
 upperLabel.style.margin = "auto";
 
-// La variable qui contiendra le resultat du calcul
-let result;
-
+let operationInput ="";
 // Changement de type des boutons d'opération et sur le bouton d'égalité
 let newOperators = [];
 for (let i = 0; i < operators.length; i++) {
@@ -29,6 +28,7 @@ for (let i = 0; i < operators.length; i++) {
 }
 equalsButton.type = 'button';
 //console.log(newOperators[0].type);
+percentageButton.type = 'button';
 
 // Sélection des codes clavier des touches du pavé numérique uniquement
 let numpadDigits = [];
@@ -36,7 +36,6 @@ for (let index = 0; index < 9; index++) {
     numpadDigits.push(index);
     
 }
-console.log(numpadDigits);
 
 // FONCTIONS D'EVENEMENTS
 function addDigit() {
@@ -60,6 +59,17 @@ function addToLabel() {
     }
 }
 
+function makeCalculation(){
+    if (upperLabel.innerText.includes('×')) {
+        operationInput = upperLabel.innerText.split('×');
+        operationInput = operationInput.join('*');
+        if (operationInput.at(-1) === '*') {
+            operationInput = operationInput.substring(0, operationInput.length -1)
+            console.log(eval(operationInput));
+        }
+    }
+}
+
 function addDot() {
     if (bottomInput.value==="") {
         bottomInput.value += this.innerText;
@@ -72,7 +82,10 @@ function addDot() {
 
 function clickZero() {
     if (bottomInput.value === "") {
-        bottomInput.value = "";
+        bottomInput.value = "0";
+    }else if (bottomInput.value ==="0"){
+        bottomInput.value;
+
     }else{
         if (bottomInput.value.length < 10) {
             bottomInput.value += this.innerText;    
@@ -115,28 +128,46 @@ function clearInput() {
     bottomInput.value = "";
 }
 
-function makeCalculation(){
-    let inputValue = parseFloat(bottomInput.value)
+/*function makeCalculation(){
+    let inputValue = Number(bottomInput.value);
+    let result = 0;
     for (let index = 0; index < operators.length; index++) {
         const element = operators[index].id;
-        switch (element) {
-            case 'plus':
+        if (element === 'plus') {
+            if (result === 0) {
+                result = inputValue;
+                bottomInput.value = result;
+            }else{
                 result += inputValue;
-                break;
-            case 'minus':
+                bottomInput.value = result;
+            }
+            console.log(result);
+        }else if (element === 'minus'){
+            if (result === 0) {
+                result = inputValue;
+            }else{
                 result -= inputValue;
-                break;
-            case 'divideby':
-                result /= inputValue;
-                break;
-            case 'times':
+            }
+
+        }else if(element === 'times'){
+            if (result === 0) {
+                result = inputValue;
+            }else{
                 result *= inputValue;
-                break;
-            default:
-                break;
+            }
+
+        }else{
+            if (result === 0) {
+                result = inputValue;
+            }else{
+                result /= inputValue;
+            }
+
         }
     }
-}
+}*/
+
+
 
 function showResults(){
 
@@ -161,7 +192,6 @@ for (let index = 0; index < digits.length; index++) {
 for (let i = 0; i < operators.length; i++) {
     const element = operators[i];
     element.addEventListener('click', addToLabel);
-    element.addEventListener('click', makeCalculation)
     
 }
 
@@ -174,5 +204,5 @@ changeSignButton.addEventListener('click', changeSign);
 // sur le bouton point
 dotButton.addEventListener('click', addDot);
 //sur le bouton d'égalité
-equalsButton.addEventListener('click', showResults );
-
+equalsButton.addEventListener('click', makeCalculation);
+//percentageButton.addEventListener()
